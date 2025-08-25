@@ -12,16 +12,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@stream-io/video-react-sdk": "^1.16.2",
-    "bcryptjs": "^3.0.2",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.14.3",
-    "siraj": "file:..",
-    "stream-chat": "^8.60.0"
+  "@stream-io/video-react-sdk": "^1.16.2",
+  "bcryptjs": "^3.0.2",
+  "cookie-parser": "^1.4.7",
+  "cors": "^2.8.5",
+  "dotenv": "^16.5.0",
+  "express": "^4.21.2",
+  "jsonwebtoken": "^9.0.2",
+  "mongoose": "^8.14.3",
+  "stream-chat": "^8.60.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
