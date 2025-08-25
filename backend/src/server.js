@@ -16,7 +16,10 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-    origin: "http://localhost:5173", // Adjust this to your frontend URL
+    origin: [
+      "http://localhost:5173",
+      "https://siraj001-production.up.railway.app"
+    ], // Adjust this to your frontend URL
     credentials: true, // Allow cookies to be sent with requests
 }));
 app.use(express.json());
@@ -52,6 +55,6 @@ app.get('/api/test', (req, res) => {
 });
 
 // شغل السيرفر هنا بعد تعريف كل شيء
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on port ${PORT}`);
 });
