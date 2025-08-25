@@ -16,5 +16,9 @@ export default defineConfig({
         rewrite: (path) => path
       }
     }
+  },
+  build: {
+    outDir: '../backend/frontend/dist',
+    emptyOutDir: true
   }
 })

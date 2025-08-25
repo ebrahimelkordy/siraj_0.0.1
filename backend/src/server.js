@@ -1,3 +1,4 @@
+
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -17,8 +18,8 @@ dotenv.config();
 const app = express();
 app.use(cors({
     origin: [
-      "http://localhost:5173",
-      "https://siraj001-production.up.railway.app"
+        "http://localhost:5173",
+        "https://siraj001-production.up.railway.app"
     ], // Adjust this to your frontend URL
     credentials: true, // Allow cookies to be sent with requests
 }));
@@ -43,10 +44,48 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/notifications', notificationRoutes);
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, '../frontend/dist')));
-    app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-    });
+    // Try multiple possible paths for the built frontend in different deployment scenarios
+    const possiblePaths = [
+        path.join(__dirname, '../frontend/dist'),           // Local development
+        path.join(__dirname, '../../frontend/dist'),        // Railway/Heroku structure
+        path.join(process.cwd(), 'frontend/dist'),          // Current working directory
+        path.join(process.cwd(), '../frontend/dist'),       // Parent directory
+        '/app/frontend/dist',                               // Railway absolute path
+        '/app/backend/frontend/dist'                        // Railway backend path
+    ];
+
+    let staticPath = null;
+    for (const possiblePath of possiblePaths) {
+        try {
+            // Check if the path exists and contains index.html
+            if (require('fs').existsSync(possiblePath) &&
+                require('fs').existsSync(path.join(possiblePath, 'index.html'))) {
+                staticPath = possiblePath;
+                console.log(`Found frontend build at: ${staticPath}`);
+                break;
+            }
+        } catch (error) {
+            console.log(`Path check failed for ${possiblePath}:`, error.message);
+        }
+    }
+
+    if (staticPath) {
+        console.log(`Serving static files from: ${staticPath}`);
+        app.use(express.static(staticPath));
+        app.get('*', (req, res) => {
+            res.sendFile(path.join(staticPath, 'index.html'));
+        });
+    } else {
+        console.log('Frontend build not found. Running in API-only mode.');
+        // For API routes, return JSON responses
+        app.get('/', (req, res) => {
+            res.json({
+                message: 'Siraj API Server',
+                status: 'running',
+                frontend: 'not built'
+            });
+        });
+    }
 }
 
 // Temporary test route
