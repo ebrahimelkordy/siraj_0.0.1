@@ -8,14 +8,7 @@ import { completedOnboarding } from '../lib/api';
 import { CameraIcon, MapPinIcon, ShuffleIcon } from 'lucide-react';
 import { LANGUAGES, LANGUAGE_TO_FLAG, EDUCATIONAL_PATHS } from '../constants/index.js';
 import { useNavigate } from 'react-router';
-
 function OnboardingPage() {
-
-  // هذه الصفحة مخصصة لإعدادات المستخدم الأولية بعد التسجيل
-  // يمكن أن تشمل إعدادات مثل اختيار اللغة، تحميل صورة الملف الشخصي، إلخ.
-  // يمكن استخدام useState أو useEffect لإدارة الحالة والبيانات هنا إذا لزم الأمر
-  // يمكن أيضًا استخدام مكتبة مثل react-hook-form لإدارة النماذج بسهولة
-
   const { authUser } = useAutheUser();
   const queryClient = useQueryClient()
   const navigate = useNavigate();
@@ -35,29 +28,28 @@ function OnboardingPage() {
 
   const { mutate: onboardingMutation, isPending } = useMutation({
     mutationFn: completedOnboarding,
-    onSuccess: () => {
-      toast.success('profile completed successfully');
+    onSuccess: (response) => {
+      console.log("Onboarding completed successfully:", response);
+      toast.success('Profile completed successfully');
       queryClient.invalidateQueries({ queryKey: ['authUser'] });
-      navigate(-1); // Go back to the previous page after saving
+      console.log("Navigating to homepage...");
+      navigate("/", { replace: true }); // Navigate to the home page after saving with replace
+      console.log("Current URL:", window.location.href); // Log current URL
     },
     onError: (error) => {
       toast.error(error.response.data.message || 'An error occurred during onboarding');
     },
   });
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isOnboarded && !formState.gender) {
       toast.error('Please select your gender');
       return;
-    } // Prevent page reload
-    // إرسال البيانات إلى الخادم
-    onboardingMutation(formState); // Send data for onboarding
-    // يمكنك هنا إضافة أي معالجة إضافية بعد الإرسال
-    // مثل إعادة توجيه المستخدم أو تحديث حالة التطبيق
+    }
 
+    onboardingMutation(formState);
+  };
 
-  }
   const handleRandomAvatar = () => {
     const idx = Math.floor(Math.random() * 1000) + 1;
     const randomAvatar = `https://api.dicebear.com/7.x/bottts/svg?seed=${idx}`;
@@ -69,7 +61,6 @@ function OnboardingPage() {
   };
   // إذا كان المستخدم أونبوردد (isOnboarded = true) نمنع تعديل الاسم والبريد والجنس والموقع
   const isOnboarded = authUser?.isOnboarded;
-
   return (
     <div className='min-h-screen  card flex items-center justify-center p-4'>
       <div className='card bg-base-200 w-full max-w-3xl shadow-xl'>
@@ -170,8 +161,8 @@ function OnboardingPage() {
                   <input
                     type="text"
                     placeholder="Enter your language"
-                    value={formState.customLearningLanguage || ""}
-                    onChange={e => setFormState({ ...formState, customLearningLanguage: e.target.value })}
+                    value={formState.learningLanguage || ""}
+                    onChange={e => setFormState({ ...formState, learningLanguage: e.target.value })}
                     className="input input-bordered w-full mt-2"
                   />
                 )}
@@ -221,17 +212,10 @@ function OnboardingPage() {
                   <option value=""></option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-
                 </select>
               </div>
               {/**location */}
-
-
-
-
-
               <div>
-
                 <label className="label">
                   <span className="label-text">Location</span>
                 </label>

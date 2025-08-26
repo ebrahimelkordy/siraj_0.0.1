@@ -63,6 +63,8 @@ function App() {
 
   const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
+  console.log("Is Authenticated:", isAuthenticated);
+  console.log("Is Onboarded:", isOnboarded);
 
   return (
     <div className="h-screen" data-theme={theme}>
@@ -73,6 +75,14 @@ function App() {
             <HomePage />
           </Layout>
         ) : (<Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />)} />
+
+        <Route path="" element={isAuthenticated && isOnboarded ? (
+          <Layout showSidebar>
+            <HomePage />
+          </Layout>
+        ) : (<Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />)} />
+
+
 
         <Route path="/signup" element={!isAuthenticated ?
           <SignUpPage />

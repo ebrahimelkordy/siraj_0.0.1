@@ -13,7 +13,6 @@ const EditGroupPage = () => {
   const navigate = useNavigate();
   const { authUser, isLoading: authLoading } = useAutheUser();
   const queryClient = useQueryClient();
-
   const [groupName, setGroupName] = useState('');
   const [groupDescription, setGroupDescription] = useState('');
   const [groupPrivacy, setGroupPrivacy] = useState('public');
@@ -29,7 +28,6 @@ const EditGroupPage = () => {
   const [banType, setBanType] = useState('message');
   const [banReason, setBanReason] = useState('');
   const [groupImage, setGroupImage] = useState('');
-
   const { data: groupData, isLoading, isError, error } = useQuery({
     queryKey: ['group', cleanedGroupId],
     queryFn: async () => {

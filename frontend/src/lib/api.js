@@ -6,6 +6,12 @@ export const signup = async (signupData) => {
 };
 export const login = async (loginData) => {
   const response = await axiosInstance.post("/auth/login", loginData);
+
+  // Set the JWT token in cookies
+  if (response.data.token) {
+    document.cookie = `JWT=${response.data.token}; path=/;`;
+  }
+
   return response.data;
 };
 export const getAuthUser = async () => {
@@ -14,6 +20,7 @@ export const getAuthUser = async () => {
 };
 export const completedOnboarding = async (userData) => {
   const response = await axiosInstance.post("/auth/onboarding", userData);
+  return response.data; // Return the response data
 };
 export const logout = async () => {
   const response = await axiosInstance.post("/auth/logout");

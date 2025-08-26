@@ -24,8 +24,6 @@ function HomePage() {
     queryKey: ["friends"],
     queryFn: getUserFriends,
   });
-
-
   const { data: recommendedUsers = [], isLoading: loadingUsers } = useQuery({
     queryKey: ["users"],
     queryFn: getRecommendedUsers,
@@ -180,16 +178,6 @@ function HomePage() {
           </section>
         </div>
       </div>
-
-
-
-
-
-
-
-
-
-
     </div>
   )
 }

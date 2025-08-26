@@ -32,9 +32,13 @@ connectDB();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Default route for root
 app.get('/', (req, res) => {
-    res.send('Welcome to the Siraj API!');
+    // Serve the frontend if the staticPath is defined
+    if (staticPath) {
+        res.sendFile(path.join(staticPath, 'index.html'));
+    } else {
+        res.send('Welcome to the Siraj API!');
+    }
 });
 
 // Auth routes
@@ -44,7 +48,49 @@ app.use('/api/chat', chatRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/notifications', notificationRoutes);
 
-// Async function to setup static file serving
+const possiblePaths = [
+    path.join(__dirname, '../frontend/dist'),           // Local development
+    path.join(__dirname, '../../frontend/dist'),        // Railway/Heroku structure
+    path.join(process.cwd(), 'frontend/dist'),          // Current working directory
+    path.join(process.cwd(), '../frontend/dist'),       // Parent directory
+    '/app/frontend/dist',                               // Railway absolute path
+    '/app/backend/frontend/dist'                        // Railway backend path
+];
+
+let staticPath = null;
+for (const possiblePath of possiblePaths) {
+    try {
+        // Check if the path exists and contains index.html
+        const fs = await import('fs');
+        if (fs.existsSync(possiblePath) &&
+            fs.existsSync(path.join(possiblePath, 'index.html'))) {
+            staticPath = possiblePath;
+            console.log(`Found frontend build at: ${staticPath}`);
+            break;
+        }
+    } catch (error) {
+        console.log(`Path check failed for ${possiblePath}:`, error.message);
+    }
+}
+
+if (staticPath) {
+    console.log(`Serving static files from: ${staticPath}`);
+    app.use(express.static(staticPath));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(staticPath, 'index.html'));
+    });
+} else {
+    console.log('Frontend build not found. Running in API-only mode.');
+    // For API routes, return JSON responses
+    app.get('/', (req, res) => {
+        res.json({
+            message: 'Siraj API Server',
+            status: 'running',
+            frontend: 'not built'
+        });
+    });
+}
+
 async function setupStaticFileServing() {
     if (process.env.NODE_ENV === "production") {
         // Try multiple possible paths for the built frontend in different deployment scenarios

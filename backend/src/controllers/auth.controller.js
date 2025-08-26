@@ -48,7 +48,7 @@ export async function signup(req, res) {
         res.cookie('JWT', token, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            sameSite: 'strict',
+            sameSite: 'lax', // Changed from 'strict' to 'lax' for better cross-origin compatibility
             secure: process.env.NODE_ENV === 'production',
         });
 
@@ -64,7 +64,9 @@ export async function login(req, res) {
         if (!email || !password) {
             return res.status(400).json({ message: 'Please fill in all fields' });
         }
+        console.log("Login attempt for email:", email);
         const user = await User.findOne({ email });
+        console.log("User found:", user);
         if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
@@ -79,7 +81,7 @@ export async function login(req, res) {
         res.cookie('JWT', token, {
             maxAge: 7 * 24 * 60 * 60 * 1000,
             httpOnly: true,
-            sameSite: 'strict',
+            sameSite: 'lax', // Changed from 'strict' to 'lax' for better cross-origin compatibility
             secure: process.env.NODE_ENV === 'production',
         });
 

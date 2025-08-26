@@ -11,9 +11,23 @@ function LoginPage() {
   });
   const { loginMutation, isPending, error } = useLogin();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    loginMutation(loginData);
+    try {
+      loginMutation(loginData, {
+        onSuccess: (response) => {
+          if (response.token) {
+            // Token is already set in the api.js login function
+            // Redirect or perform any additional actions here
+          }
+        },
+        onError: (err) => {
+          console.error("Login failed:", err);
+        }
+      });
+    } catch (err) {
+      console.error("Login failed:", err);
+    }
 
 
   }
