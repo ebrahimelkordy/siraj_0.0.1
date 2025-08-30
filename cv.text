@@ -1,0 +1,85 @@
+Ibrahim Hashish
+Frontend & full-stack Developer 
+
+Contact Information
+Email: ebrahimkordy0@gmail.com
+Phone: 01060899732
+Location: Egypt
+
+Professional Summary
+Passionate self-taught frontend developer specializing in React.js with experience in building modern, responsive web applications. Strong focus on user experience, clean code, and performance optimization. Quick learner with excellent problem-solving skills.
+
+Technical Skills
+- Frontend Framework: React.js (v19), React Router, React Query (TanStack)
+- Programming Languages: JavaScript (ES6+), HTML5, CSS3
+- Styling: Tailwind CSS, DaisyUI, Responsive Design
+- State Management: Zustand, React Hooks
+- Build Tools: Vite, npm
+- UI Libraries: Lucide React, Tabler Icons
+- Real-time Communication: Stream Chat API integration
+- Version Control: Git
+- Development Tools: ESLint, Chrome DevTools
+
+Project Experience
+Social Media Platform Frontend - Personal Project
+- Developed complete frontend for a social media platform with modern React.js architecture
+- Implemented responsive user interface using Tailwind CSS and DaisyUI components
+- Built real-time chat interface with Stream Chat API integration
+- Created video calling interface with Stream Video API
+- Developed complex state management using Zustand for global state and React Query for server state
+- Implemented user authentication flows with JWT token management
+- Designed and built notification system with real-time updates
+- Created group management interface with member permissions and admin controls
+- Optimized application performance with efficient component rendering and data caching
+
+Key Frontend Features:
+- Responsive design that works seamlessly on desktop and mobile devices
+- Real-time messaging with message threading and reactions
+- Video call interface with participant management
+- Friend system with request/accept workflow
+- Group creation and management interface
+- Notification center with live updates
+- User profile management
+- Theme switching functionality
+
+Technical Implementation:
+- Used React 19 with modern hooks and functional components
+- Implemented Vite for fast development and building
+- Utilized React Query for efficient data fetching and caching
+- Applied Zustand for lightweight global state management
+- Integrated multiple third-party APIs (Stream Chat, Stream Video)
+- Followed component-based architecture for maintainability
+- Implemented proper error handling and loading states
+- Used ESLint for code quality and consistency
+
+Soft Skills
+- Problem Solving: Strong analytical skills with ability to troubleshoot and resolve complex technical issues
+- Communication: Effective communicator with ability to explain technical concepts clearly
+- Adaptability: Quick learner who can adapt to new technologies and project requirements
+- Attention to Detail: Meticulous approach to UI/UX design and code quality
+- Time Management: Ability to manage multiple tasks and meet deadlines
+- Self-Motivation: Proactive in learning new skills and taking initiative on projects
+- Creativity: Innovative approach to solving user interface challenges
+- User-Centric Mindset: Focus on creating intuitive and enjoyable user experiences
+- Continuous Learning: Committed to staying updated with latest frontend technologies and best practices
+
+Development Approach:
+- Focus on clean, maintainable code with proper documentation
+- Emphasis on performance optimization and user experience
+- Strong understanding of modern JavaScript and React patterns
+- Experience with component composition and reusability
+- Knowledge of accessibility best practices
+- Understanding of cross-browser compatibility issues
+
+Availability
+- Seeking frontend development opportunities
+- Open to freelance projects and full-time positions
+- Available for remote work
+- Willing to continuously learn and adapt to new technologies
+
+Languages
+- Arabic: Native
+- English: Proficient (Technical documentation and communication)
+
+References
+Available upon request

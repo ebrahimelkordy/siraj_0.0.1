@@ -34,7 +34,7 @@ function LoginPage() {
   return (
     <div className='h-screen flex items-center justify-center p-4 sm:p-6 md:p-8'>
 
-      <div className=' border border-primary/25  w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadw-lg overflow-hidden grid grid-cols-2 '>
+      <div className=' border border-primary/25  w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadw-lg overflow-hidden grid grid-cols-2 sm:flex flex-col'>
         {/**loginform */}
         <div className='w-full  p-4 sm:p-8 flex flex-col  '>
           {/**logo */}
