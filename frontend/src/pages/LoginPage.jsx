@@ -32,11 +32,13 @@ function LoginPage() {
 
   }
   return (
-    <div className='h-screen flex items-center justify-center p-4 sm:p-6 md:p-8'>
+    <div className=' bg-base-100 flex items-center justify-center p-4  sm:p-6 md:p-8'>
 
-      <div className=' border border-primary/25  w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadw-lg overflow-hidden grid grid-cols-2 sm:flex flex-col'>
+      <div className="w-full max-w-5xl mx-auto bg-base-100 rounded-xl shadow-lg overflow-hidden 
+            border border-primary/25 
+            grid grid-cols-1 sm:grid-cols-2">
         {/**loginform */}
-        <div className='w-full  p-4 sm:p-8 flex flex-col  '>
+        <div className=' order-2 w-full  p-4 sm:p-8 flex flex-col h-screen sm:h-auto  '>
           {/**logo */}
           <div className='mb-4 flex items-center justify-start gap-2'>
             <img src={sirajLogo} alt="logo" className="size-20" />
@@ -111,10 +113,10 @@ function LoginPage() {
           </form>
 
         </div>
-        <div className="flex w-full  bg-primary/10 items-center justify-center">
+        <div className="flex w-full  bg-primary/10 items-center justify-center h-screen sm:h-auto">
           <div className="max-w-md p-8">
             {/* Illustration */}
-            <div className="relative aspect-square max-w-sm mx-auto">
+            <div className="order-1 relative aspect-square max-w-sm mx-auto ">
               <img src={sirajLogo} alt="Language connection illustration" className="w-full h-full  drop-shadow-[0_0_60px_rgba(255,140,0,0.5)]" />
             </div>
 
