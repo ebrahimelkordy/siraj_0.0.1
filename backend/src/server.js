@@ -33,12 +33,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.get('/', (req, res) => {
-    // Serve the frontend if the staticPath is defined
-    if (staticPath) {
-        res.sendFile(path.join(staticPath, 'index.html'));
-    } else {
-        res.send('Welcome to the Siraj API!');
-    }
+    res.send('Welcome to the Siraj API!');
 });
 
 // Auth routes
@@ -47,15 +42,6 @@ app.use('/api/users', userRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/groups', groupRoutes);
 app.use('/api/notifications', notificationRoutes);
-
-// Serve static files from the 'dist' directory
-const staticDir = path.join(__dirname, "../dist");
-app.use(express.static(staticDir));
-
-// For any other request, serve the index.html file
-app.get("*", (req, res) => {
-    res.sendFile(path.join(staticDir, "index.html"));
-});
 
 // Temporary test route
 app.get('/api/test', (req, res) => {
