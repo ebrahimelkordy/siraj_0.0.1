@@ -207,10 +207,8 @@ export const EDUCATIONAL_PATHS = [
   "Islamic History",
   "Islamic Jurisprudence (Fiqh)",
   "Islamic Theology (Aqidah)",
-
   "Islamic Ethics",
   "Islamic Law (Shariah)",
-
   "Software Engineering",
   "Computer Science",
   "Data Science",
@@ -234,7 +232,6 @@ export const EDUCATIONAL_PATHS = [
   "Environmental Science",
   "Geography",
   "Philosophy",
-
   "Science",
   "Arts",
   "Engineering",

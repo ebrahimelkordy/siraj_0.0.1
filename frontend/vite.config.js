@@ -17,7 +17,7 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../backend/frontend/dist',
+    outDir: '../backend/dist',
     emptyOutDir: true
   }
 })
